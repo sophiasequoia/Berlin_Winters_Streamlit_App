@@ -10,7 +10,7 @@ st.set_page_config(page_title="Winter Weather Dashboard", layout="wide")
 pbw = pd.read_csv('pbw_processed.csv', parse_dates=['DATE'])
 winter_prcp = pd.read_csv('winter_prcp.csv')
 monthly_summary = pd.read_csv('monthly_summary.csv')
-winter_extremes = pd.read_csv('winter_extremes.csv')
+winter_start_end = pd.read_csv('winter_start_end.csv')
 cold_days = pd.read_csv('cold_days.csv')
 
 # --- Sidebar Controls ---
@@ -113,7 +113,7 @@ with tabs[3]:
 # --- Tab 5: First/Last Snow & Freeze (Q8) ---
 with tabs[4]:
     st.header("First and Last Snow / Freeze")
-    extremes_filtered = winter_extremes[(winter_extremes['WINTER_YEAR'] >= years[0]) & (winter_extremes['WINTER_YEAR'] <= years[1])]
+    extremes_filtered = winter_start_end[(winter_start_end['WINTER_YEAR'] >= years[0]) & (winter_start_end['WINTER_YEAR'] <= years[1])]
     fig = go.Figure()
     for metric in timeline_metrics:
         fig.add_trace(go.Scatter(
